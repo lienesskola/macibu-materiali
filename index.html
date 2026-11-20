@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8fb">
+<meta name="description" content="Interaktīvi mācību materiāli latviešu valodā un literatūrā.">
+<title>Mācību materiālu bibliotēka</title>
+<style>
+:root{color-scheme:light;--bg:#f7f8fb;--paper:#fff;--ink:#182235;--muted:#5e6a7e;--line:#dee4ed;--accent:#244d86;--accentlight:#edf3fa}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{width:min(950px,calc(100% - 36px));margin:auto}header{background:var(--paper);border-bottom:1px solid var(--line)}header .wrap{padding:42px 0 36px}h1{font-size:clamp(1.8rem,4.5vw,2.65rem);line-height:1.15;letter-spacing:-.035em;margin:0 0 12px}header p{max-width:650px;color:var(--muted);margin:0;font-size:1.04rem}main{padding:34px 0 70px}.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:28px}.field{flex:1 1 270px}.field label{display:block;font-size:.85rem;font-weight:650;margin-bottom:6px}.field input,.field select{font:inherit;width:100%;padding:11px 13px;min-height:46px;background:#fff;border:1px solid #c9d4e1;border-radius:9px;color:var(--ink)}.field input:focus,.field select:focus{outline:2px solid #7aa5d4;outline-offset:1px}.section{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin:24px 0 13px}.section h2{font-size:1.18rem;margin:0}.count{font-size:.87rem;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:23px;display:flex;flex-direction:column;gap:12px;min-height:255px}.meta{font-size:.8rem;letter-spacing:.03em;text-transform:uppercase;color:var(--accent);font-weight:750}.card h3{margin:0;font-size:1.25rem;line-height:1.3}.card p{color:var(--muted);margin:0;flex:1}.tag{display:inline-block;border:1px solid var(--line);border-radius:100px;padding:3px 9px;color:var(--muted);font-size:.79rem;align-self:flex-start}.card a{display:inline-flex;gap:8px;align-items:center;justify-content:center;border-radius:9px;padding:11px 14px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;align-self:flex-start}.card a:hover,.card a:focus-visible{background:#173d6d}.empty{padding:28px;border:1px dashed #b8c3d1;border-radius:12px;color:var(--muted);background:white}.note{margin-top:30px;padding:16px 18px;border-left:3px solid #89a8cb;background:#edf3fa;color:#354a66;font-size:.92rem;border-radius:0 8px 8px 0}footer{border-top:1px solid var(--line);padding:21px 0 36px;color:var(--muted);font-size:.85rem}@media(max-width:520px){header .wrap{padding:30px 0}.wrap{width:min(950px,calc(100% - 28px))}main{padding-top:24px}.card{min-height:0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Mācību materiālu bibliotēka</h1><p>Interaktīvi uzdevumi latviešu valodā un literatūrā. Mācies soli pa solim, saņem atgriezenisko saiti un pārbaudi savu izpratni.</p></div></header>
+<main class="wrap">
+<div class="tools"><div class="field"><label for="search">Meklēt materiālu</label><input id="search" type="search" placeholder="Piemēram, saziņa, CV, 9. klase" autocomplete="off"></div><div class="field"><label for="grade">Klase</label><select id="grade"><option value="">Visas klases</option><option value="7">7. klase</option><option value="8">8. klase</option><option value="9">9. klase</option></select></div></div>
+<div class="section"><h2>Pieejamie materiāli</h2><span class="count" id="count" aria-live="polite">1 materiāls</span></div>
+<div class="cards" id="cards">
+<article class="card" data-grade="9" data-search="9 klase latviešu valoda saziņa brīvprātīgais darbs motivācijas vēstule cv mana iespēja pasaulē">
+<div class="meta">Latviešu valoda · 9. klase</div>
+<h3>Mana iespēja pasaulē</h3>
+<p>Saziņa, brīvprātīgā darba iespēju izpēte, projekta izvēle, CV un motivācijas vēstule. Uzdevumi atveras secīgi.</p>
+<span class="tag">Interaktīvs mācību modulis</span>
+<a href="./9-klase/sazina/">Atvērt materiālu <span aria-hidden="true">→</span></a>
+</article>
+</div>
+<p class="empty" id="empty" hidden>Šobrīd šādiem meklēšanas nosacījumiem nav materiālu. Pamēģini citu atslēgvārdu vai izvēlies visas klases.</p>
+<div class="note">Bibliotēka tiek papildināta. Lai turpinātu uzdevumus no vietas, kur paliki, izmanto to pašu ierīci un pārlūkprogrammu, ja konkrētais materiāls saglabā progresu lokāli.</div>
+</main>
+<footer><div class="wrap">Mācību materiālu bibliotēka · Latviešu valoda un literatūra</div></footer>
+<script>
+(function(){'use strict';const q=document.getElementById('search'),grade=document.getElementById('grade'),cards=[...document.querySelectorAll('.card')],count=document.getElementById('count'),empty=document.getElementById('empty');function filter(){const term=q.value.toLocaleLowerCase('lv').trim(),g=grade.value;let n=0;for(const c of cards){const visible=(!g||c.dataset.grade===g)&&(!term||c.dataset.search.includes(term));c.hidden=!visible;if(visible)n++}count.textContent=n+' '+(n===1?'materiāls':'materiāli');empty.hidden=n!==0;}q.addEventListener('input',filter);grade.addEventListener('change',filter);filter()})();
+</script>
+</body></html>
