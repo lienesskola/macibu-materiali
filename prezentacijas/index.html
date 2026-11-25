@@ -37,6 +37,16 @@ h3{font-size:1.4rem;line-height:1.25;margin:14px 0 10px}
 .note{font-size:.92rem;color:var(--muted);max-width:720px;margin-top:26px}
 footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.88rem}
 @media(max-width:550px){main{padding-top:32px}.card{padding:22px}.brand img{width:68px}.head{padding:14px 0}}
+
+/* Filtri un meklēšana */
+.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px;padding:18px;border:1px solid var(--line);border-radius:15px;background:var(--paper)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:.89rem;font-weight:700}
+.field input,.field select{width:100%;min-height:45px;border:1px solid #bdcadb;border-radius:9px;background:#fff;padding:10px 12px;font:inherit;color:var(--ink)}
+.field input:focus-visible,.field select:focus-visible{outline:3px solid #acc9ef;outline-offset:1px}
+.empty{border:1px dashed var(--line);border-radius:15px;padding:30px;text-align:center;color:var(--muted);background:var(--paper)}
+.card[hidden],.empty[hidden]{display:none!important}
+@media(max-width:760px){.filters{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -48,10 +58,33 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
   <div class="eyebrow">Latviešu valoda un literatūra</div>
   <h1>Mācību prezentācijas</h1>
   <p class="intro">Prezentācijas, ko izmantot stundās apgūtā atkārtošanai un gatavojoties pārbaudes darbiem. Izvēlies savu tēmu un atver slaidus pārlūkā.</p>
+  <section aria-label="Prezentāciju atlase" class="filters">
+    <div class="field">
+      <label for="grade">Klase</label>
+      <select id="grade">
+        <option value="">Visas klases</option>
+        <option value="7">7. klase</option>
+        <option value="8">8. klase</option>
+        <option value="9">9. klase</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="subject">Priekšmets</label>
+      <select id="subject">
+        <option value="">Visi priekšmeti</option>
+        <option value="latviesu-valoda">Latviešu valoda</option>
+        <option value="literatura">Literatūra</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="search">Meklēt pēc tēmas</label>
+      <input id="search" type="search" placeholder="Piemēram, mīti" autocomplete="off">
+    </div>
+  </section>
   <section aria-labelledby="topic-heading">
-    <div class="section-label"><h2 id="topic-heading">Pieejamās prezentācijas</h2><span class="count">1 prezentācija</span></div>
-    <div class="cards">
-      <article class="card">
+    <div class="section-label"><h2 id="topic-heading">Pieejamās prezentācijas</h2><span class="count" id="count" aria-live="polite">1 prezentācija</span></div>
+    <div class="cards" id="cards">
+      <article class="card" data-grade="9" data-subject="literatura" data-search="mīti un mitoloģija kā radās pasaule un cilvēks pasaules radīšana kosmogoniskie antropogoniskie mīti">
         <div class="meta">Literatūra · 9. klase</div>
         <h3>Mīti un mitoloģija</h3>
         <p>Kā radās pasaule un cilvēks? Iepazīsti pasaules radīšanas mītus dažādās kultūrās, salīdzini to kopīgos motīvus un atkārto svarīgākos jēdzienus.</p>
@@ -62,9 +95,37 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
         </div>
       </article>
     </div>
+    <p id="empty" class="empty" hidden>Šādai atlasei prezentāciju pagaidām nav. Pamēģini izvēlēties citu klasi, priekšmetu vai meklēšanas vārdu.</p>
   </section>
   <p class="note">Ja prezentācija pārlūkā neatveras, izmanto saiti „Lejupielādēt PDF”. Šo bibliotēku papildināsim ar citiem mācību materiāliem.</p>
 </main>
 <footer><div class="wrap">Lienes digitālā mācību bibliotēka · Latviešu valoda un literatūra</div></footer>
+<script>
+(() => {
+  const grade = document.getElementById('grade');
+  const subject = document.getElementById('subject');
+  const search = document.getElementById('search');
+  const cards = [...document.querySelectorAll('#cards .card')];
+  const count = document.getElementById('count');
+  const empty = document.getElementById('empty');
+  function update() {
+    const text = search.value.trim().toLocaleLowerCase('lv');
+    let shown = 0;
+    for (const card of cards) {
+      const matchGrade = !grade.value || card.dataset.grade === grade.value;
+      const matchSubject = !subject.value || card.dataset.subject === subject.value;
+      const content = (card.dataset.search + ' ' + card.innerText).toLocaleLowerCase('lv');
+      const matchText = !text || content.includes(text);
+      card.hidden = !(matchGrade && matchSubject && matchText);
+      if (!card.hidden) shown++;
+    }
+    count.textContent = shown === 1 ? '1 prezentācija' : `${shown} prezentācijas`;
+    empty.hidden = shown !== 0;
+  }
+  [grade, subject].forEach(el => el.addEventListener('change', update));
+  search.addEventListener('input', update);
+  update();
+})();
+</script>
 </body>
 </html>
