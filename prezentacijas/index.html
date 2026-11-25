@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Lienes digitālā mācību bibliotēka: prezentācijas latviešu valodā un literatūrā. Atkārto stundās apgūto un gatavojies pārbaudes darbiem.">
+<title>Mācību prezentācijas | Lienes digitālā mācību bibliotēka</title>
+<style>
+:root{color-scheme:light;--paper:#fff;--bg:#f7f8fb;--ink:#182235;--muted:#53647c;--line:#dce3ee;--accent:#244d86;--accent-hover:#193c6f}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+a{color:inherit}
+.wrap{width:min(1050px,calc(100% - 36px));margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.head{padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:16px;text-decoration:none;font-size:1.03rem;font-weight:750;color:var(--ink)}
+.brand img{width:92px;height:54px;object-fit:contain;object-position:left center}
+.back{font-size:.92rem;color:var(--accent);font-weight:650;text-decoration:none}
+.back:hover{text-decoration:underline}
+main{padding:45px 0 84px}
+.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.17;margin:12px 0}
+.intro{max-width:720px;color:var(--muted);font-size:1.04rem;margin:0 0 36px}
+.section-label{display:flex;justify-content:space-between;align-items:center;margin:0 0 15px;gap:15px}
+h2{font-size:1.13rem;margin:0}.count{color:var(--muted);font-size:.91rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:18px}
+.card{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:26px;box-shadow:0 3px 12px rgba(25,45,76,.025)}
+.meta{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.78rem}
+h3{font-size:1.4rem;line-height:1.25;margin:14px 0 10px}
+.card p{color:var(--muted);margin:0 0 20px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:23px}
+.tag{border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.8rem;color:var(--muted)}
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.button{display:inline-flex;justify-content:center;align-items:center;min-height:43px;padding:10px 15px;border-radius:9px;background:var(--accent);color:white;text-decoration:none;font-weight:700;font-size:.94rem}
+.button:hover,.button:focus-visible{background:var(--accent-hover)}
+.secondary{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:.94rem}
+.note{font-size:.92rem;color:var(--muted);max-width:720px;margin-top:26px}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.88rem}
+@media(max-width:550px){main{padding-top:32px}.card{padding:22px}.brand img{width:68px}.head{padding:14px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap head">
+  <a class="brand" href="../"><img src="../logo.png" alt="Lienes digitālās mācību bibliotēkas logo"><span>Lienes digitālā mācību bibliotēka</span></a>
+  <a class="back" href="../">← Uz sākumlapu</a>
+</div></header>
+<main class="wrap">
+  <div class="eyebrow">Latviešu valoda un literatūra</div>
+  <h1>Mācību prezentācijas</h1>
+  <p class="intro">Prezentācijas, ko izmantot stundās apgūtā atkārtošanai un gatavojoties pārbaudes darbiem. Izvēlies savu tēmu un atver slaidus pārlūkā.</p>
+  <section aria-labelledby="topic-heading">
+    <div class="section-label"><h2 id="topic-heading">Pieejamās prezentācijas</h2><span class="count">1 prezentācija</span></div>
+    <div class="cards">
+      <article class="card">
+        <div class="meta">Literatūra · 9. klase</div>
+        <h3>Mīti un mitoloģija</h3>
+        <p>Kā radās pasaule un cilvēks? Iepazīsti pasaules radīšanas mītus dažādās kultūrās, salīdzini to kopīgos motīvus un atkārto svarīgākos jēdzienus.</p>
+        <div class="tags"><span class="tag">16 slaidi</span><span class="tag">PDF</span><span class="tag">Pasaules radīšanas mīti</span></div>
+        <div class="actions">
+          <a class="button" href="./Miti_un_mitologija_9_klase.pdf" target="_blank" rel="noopener">Atvērt prezentāciju ↗</a>
+          <a class="secondary" href="./Miti_un_mitologija_9_klase.pdf" download>Lejupielādēt PDF</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <p class="note">Ja prezentācija pārlūkā neatveras, izmanto saiti „Lejupielādēt PDF”. Šo bibliotēku papildināsim ar citiem mācību materiāliem.</p>
+</main>
+<footer><div class="wrap">Lienes digitālā mācību bibliotēka · Latviešu valoda un literatūra</div></footer>
+</body>
+</html>
